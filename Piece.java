@@ -47,4 +47,12 @@ public class Piece{
 	private int bot;
 	private int left;
 	private int right;
+	public static final int CLUB_IN = -1;
+	public static final int CLUB_OUT = 1;
+	public static final int DIAMOND_IN = -2;
+	public static final int DIAMOND_OUT = 2;
+	public static final int HEART_IN = -3;
+	public static final int HEART_OUT = 3;
+	public static final int SPADE_IN = -4;
+	public static final int SPADE_OUT = 4;
 }
