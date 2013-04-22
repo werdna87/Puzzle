@@ -6,5 +6,6 @@ public class PuzzleGraphics {
 	public void Congratulations(){
 		
 	}
+	
 
 }
