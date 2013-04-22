@@ -43,4 +43,8 @@ public class Piece{
 	public Piece(int top, int bottom, int left, int right){
 
 	}
+	private int top;
+	private int bot;
+	private int left;
+	private int right;
 }

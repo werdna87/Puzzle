@@ -30,5 +30,6 @@ public class Board{
 
 	}
 
-	public final Piece[] PiECES = null;
+	public final Piece[] PIECES = null;
+	private Piece[][] array = null;
 }
