@@ -3,11 +3,48 @@ import java.awt.Point;
 public class Board{
 
 	public boolean doesFit(Piece p, Point location){
-		return false;
+		if(getPiece(location) != null){		
+			if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
+					(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
+					(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
+					(getLeft(location)== null||p.getLeft()+getLeft(location).getRight()==0)){
+				return true;
+
+			}
+			else return false;
+		}
+		else return false;
+	}
+	private Piece getTop(Point p){
+		if(isValid(new Point((int) p.x,(int) p.y-1))){
+			return board[(int) p.x][(int) p.y-1];
+		}
+		else return null;
+	}
+	private Piece getRight(Point p){
+		if(isValid(new Point((int) p.x+1,(int) p.y))){
+			return board[(int) p.x+1][(int) p.y];
+		}
+		else return null;
+	}
+	private Piece getBottom(Point p){
+		if(isValid(new Point((int) p.x,(int) p.y+1))){
+			return board[(int) p.x][(int) p.y+1];
+		}
+		else return null;
+	}
+	private Piece getLeft(Point p){
+		if(isValid(new Point((int) p.x-1,(int) p.y))){
+			return board[(int) p.x-1][(int) p.y];
+		}
+		else return null;
 	}
 
 	public Piece getPiece(Point p){
-		return board[(int) p.getX()][(int) p.getY()];
+		if(isValid(p)){
+			return board[(int) p.x][(int) p.y];
+		}
+		else return null;
 	}
 
 	public boolean isValid(Point p){
@@ -25,7 +62,18 @@ public class Board{
 	}
 
 	public boolean setPiece(Piece p, Point location){
-		return false;
+		if(getPiece(location)==null && doesFit(p,location)){
+			board[(int) location.getX()][(int) location.getY()] = p;
+			return true;
+		}
+		else return false;
+	}
+	public void clear(){
+		for(int i = 0;i<=xDim;i++){
+			for(int j = 0;j<=yDim;j++){
+				setPiece(null,new Point(i,j));
+			}
+		}
 	}
 
 	public Board(){
