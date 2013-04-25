@@ -60,7 +60,13 @@ public class Board{
 		}
 		else return true;
 	}
-
+	
+	public int getRows(){
+		return xDim;
+	}
+	public int getCols(){
+		return yDim;
+	}
 	public boolean setPiece(Piece p, Point location){
 		if(getPiece(location)==null && doesFit(p,location)){
 			board[(int) location.getX()][(int) location.getY()] = p;
