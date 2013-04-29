@@ -11,8 +11,13 @@ public class Piece{
 	public static final int HEART_OUT = 3;
 	public static final int SPADE_IN = -4;
 	public static final int SPADE_OUT = 4;
-
-
+	
+	public String toString(){
+		String s = "";
+		return s+="["+getTop()+getBottom()+getLeft()+getRight()+"]";
+		
+	}
+	
 	public void cRotate(){
 		int temp = right;
 		right=top;
@@ -67,6 +72,19 @@ public class Piece{
 		this.bot=bottom;
 		this.left=left;
 		this.right=right;
+	}
+	
+	public static void main(String[]args){
+		Piece p = new Piece(1,1,-1,-1);
+		System.out.println(p);
+		System.out.println(p.getBottom()+ p.getLeft()+p.getRight()+p.getTop());
+		p.cRotate();
+		System.out.println(p.getBottom()+ p.getLeft()+p.getRight()+p.getTop());
+		System.out.println(p);
+		
+		
+		
+		
 	}
 	
 	
