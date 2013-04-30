@@ -3,7 +3,7 @@ import java.awt.Point;
 public class Board{
 
 	public boolean doesFit(Piece p, Point location){
-		if(getPiece(location) != null){		
+		if(getPiece(location) == null){		
 			if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
 					(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
 					(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
@@ -48,7 +48,7 @@ public class Board{
 	}
 
 	public boolean isValid(Point p){
-		if(p.getX()<=0||p.getY()<=0||p.getX()>=xDim||p.getY()>=yDim){
+		if(p.getX()<0||p.getY()<0||p.getX()>=xDim||p.getY()>=yDim){
 			return false;
 		}
 		else return true;
@@ -84,16 +84,22 @@ public class Board{
 	
 	public String toString(){
 		String s = "";
-		for(int i=0;i<getCols();i++){
-			for(int j=0;j<getRows();j++){
-				s+=getPiece(new Point(i,j)).toString();
+		for(int i=0;i<xDim;i++){
+			for(int j=0;j<yDim;j++){
+				if(getPiece(new Point(i,j))==null){
+					s+="[      ]";
+				}
+				else{
+					s+=getPiece(new Point(i,j)).toString();
+				}
 			}
+			s+="\n";
 		}
 		return s;
 	}
 
 	public Board(){
-		new Board(3,3);
+		this(3,3);
 	}
 
 	public Board(int xDim, int yDim){

@@ -14,7 +14,7 @@ public class Piece{
 	
 	public String toString(){
 		String s = "";
-		return s+="["+getTop()+getBottom()+getLeft()+getRight()+"]";
+		return s+="["+getTop()+getRight()+getLeft()+getBottom()+"]";
 		
 	}
 	
@@ -72,20 +72,5 @@ public class Piece{
 		this.bot=bottom;
 		this.left=left;
 		this.right=right;
-	}
-	
-	public static void main(String[]args){
-		Piece p = new Piece(1,1,-1,-1);
-		System.out.println(p);
-		System.out.println(p.getBottom()+ p.getLeft()+p.getRight()+p.getTop());
-		p.cRotate();
-		System.out.println(p.getBottom()+ p.getLeft()+p.getRight()+p.getTop());
-		System.out.println(p);
-		
-		
-		
-		
-	}
-	
-	
+	}			
 }
