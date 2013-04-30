@@ -81,6 +81,16 @@ public class Board{
 			}
 		}
 	}
+	
+	public String toString(){
+		String s = "";
+		for(int i=0;i<getCols();i++){
+			for(int j=0;j<getRows();j++){
+				s+=getPiece(new Point(i,j)).toString();
+			}
+		}
+		return s;
+	}
 
 	public Board(){
 		new Board(3,3);
