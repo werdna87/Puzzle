@@ -3,7 +3,15 @@ import java.awt.Point;
 public class Board{
 
 	public boolean doesFit(Piece p, Point location){
-		if(getPiece(location) == null){		
+		if(getPiece(location) == null){
+//			if(getTop(location)== null||p.getTop()+getTop(location).getBottom()==0
+//				System.out.println("top works");
+//				if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
+//					System.out.println("Right works");
+//					
+//				}
+//				
+//		}
 			if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
 					(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
 					(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
