@@ -4,25 +4,24 @@ public class Board{
 
 	public boolean doesFit(Piece p, Point location){
 		if(getPiece(location) == null){
-//			if(getTop(location)== null||p.getTop()+getTop(location).getBottom()==0
-//				System.out.println("top works");
-//				if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
-//					System.out.println("Right works");
-//					
-//				}
-//				
-//		}
-			if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
-					(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
-					(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
-					(getLeft(location)== null||p.getLeft()+getLeft(location).getRight()==0)){
-				return true;
-
-			}
-			else return false;
+			if(getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)
+				System.out.println("top works");
+			if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
+				System.out.println("Right works");
 		}
+		if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
+				(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
+				(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
+				(getLeft(location)== null||p.getLeft()+getLeft(location).getRight()==0)){
+			return true;
+		}
+		else{
+			return false;
+		}}
 		else return false;
 	}
+
+
 	private Piece getTop(Point p){
 		if(isValid(new Point((int) p.x,(int) p.y-1))){
 			return board[(int) p.x][(int) p.y-1];
@@ -68,7 +67,7 @@ public class Board{
 		}
 		else return true;
 	}
-	
+
 	public int getRows(){
 		return xDim;
 	}
@@ -89,7 +88,7 @@ public class Board{
 			}
 		}
 	}
-	
+
 	public String toString(){
 		String s = "";
 		for(int i=0;i<xDim;i++){
