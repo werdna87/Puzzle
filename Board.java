@@ -3,59 +3,101 @@ import java.awt.Point;
 public class Board{
 
 	public boolean doesFit(Piece p, Point location){
-		if(getPiece(location) == null){
-			if(getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)
-				System.out.println("top works");
-			if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
-				System.out.println("Right works");
+		//		if(getPiece(location) == null){
+		//			if(getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)
+		//				System.out.println("top works");
+		//			if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
+		//				System.out.println("Right works");
+		//		}
+		if((topFits(p,location))){
+			if (rightFits(p,location)){
+				if (bottomFits(p,location)){
+					if (leftFits(p,location)){
+						return true;
+					}
+					else return false;
+				}
+				else return false;
+			}
+			else return false;
 		}
-		if((getTop(location)== null||p.getTop()+getTop(location).getBottom()==0)&&
-				(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0) &&
-				(getBottom(location)== null||p.getBottom()+getBottom(location).getTop()==0) &&
-				(getLeft(location)== null||p.getLeft()+getLeft(location).getRight()==0)){
-			return true;
-		}
-		else{
-			return false;
-		}}
 		else return false;
 	}
 
-
 	private Piece getTop(Point p){
-		if(isValid(new Point((int) p.x,(int) p.y-1))){
-			return board[(int) p.x][(int) p.y-1];
+		if(isValid(new Point((int) p.y-1,(int) p.x))){
+			System.out.println("A piece was found there");
+			return board[(int) p.y-1][(int) p.x];
 		}
 		else return null;
 	}
+	public boolean topFits(Piece p, Point location){
+		if(getTop(location)== null){
+			System.out.println("SOMETHING WEIRD IS GOING ON");
+			return true;
+		}
+		else if(p.getTop()+getTop(location).getBottom()==0){
+			System.out.println(p.getTop() + "\n" + getTop(location).getBottom());
+			return true;
+		}
+		else return false;
+	}	
+	private boolean rightFits(Piece p, Point location){
+		if(getTop(location)== null){
+			return true;
+		}
+		else if(p.getRight()+getRight(location).getLeft()==0){
+			return true;
+		}
+		else return false;
+	}
+	private boolean leftFits(Piece p, Point location){
+		if(getTop(location)== null){
+			return true;
+		}
+		else if(p.getLeft()+getLeft(location).getRight()==0){
+			return true;
+		}
+		else return false;
+	}
+	private boolean bottomFits(Piece p, Point location){
+		if(getTop(location)== null){
+			return true;
+		}
+		else if(p.getBottom()+getBottom(location).getTop()==0){
+			return true;
+		}
+		else return false;
+	}
 	private Piece getRight(Point p){
-		if(isValid(new Point((int) p.x+1,(int) p.y))){
-			return board[(int) p.x+1][(int) p.y];
+		if(isValid(new Point((int) p.y,(int) p.x+1))){
+			return board[(int) p.y][(int) p.x+1];
 		}
 		else return null;
 	}
 	private Piece getBottom(Point p){
-		if(isValid(new Point((int) p.x,(int) p.y+1))){
-			return board[(int) p.x][(int) p.y+1];
+		if(isValid(new Point((int) p.y+1,(int) p.x))){
+			return board[(int) p.y+1][(int) p.x];
 		}
 		else return null;
 	}
 	private Piece getLeft(Point p){
-		if(isValid(new Point((int) p.x-1,(int) p.y))){
-			return board[(int) p.x-1][(int) p.y];
+		if(isValid(new Point((int) p.y,(int) p.x-1))){
+			return board[(int) p.y][(int) p.x-1];
 		}
 		else return null;
 	}
 
 	public Piece getPiece(Point p){
 		if(isValid(p)){
-			return board[(int) p.x][(int) p.y];
+			return board[(int) p.y][(int) p.x];
 		}
 		else return null;
 	}
 
 	public boolean isValid(Point p){
 		if(p.getX()<0||p.getY()<0||p.getX()>=xDim||p.getY()>=yDim){
+			System.out.println("A NON-VALID SPOT WAS FOUND AT" + p);
 			return false;
 		}
 		else return true;
@@ -69,14 +111,14 @@ public class Board{
 	}
 
 	public int getRows(){
-		return xDim;
+		return yDim;
 	}
 	public int getCols(){
-		return yDim;
+		return xDim;
 	}
 	public boolean setPiece(Piece p, Point location){
 		if(getPiece(location)==null && doesFit(p,location)){
-			board[(int) location.getX()][(int) location.getY()] = p;
+			board[(int) location.y][(int) location.x] = p;
 			return true;
 		}
 		else return false;

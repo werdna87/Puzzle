@@ -17,6 +17,11 @@ public class Piece{
 		return s+="["+getTop()+getRight()+getLeft()+getBottom()+"]";
 		
 	}
+	public void piecePrinter(){
+		System.out.println("  " + getTop());
+		System.out.println(getLeft() + "   " + getRight());
+		System.out.println("  " + getBottom());
+	}
 	
 	public void cRotate(){
 		int temp = right;
