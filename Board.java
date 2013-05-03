@@ -9,41 +9,33 @@ public class Board{
 		//			if(getRight(location)== null||p.getRight()+getRight(location).getLeft()==0){
 		//				System.out.println("Right works");
 		//		}
-		if((topFits(p,location))){
-			if (rightFits(p,location)){
-				if (bottomFits(p,location)){
-					if (leftFits(p,location)){
-						return true;
-					}
-					else return false;
-				}
-				else return false;
-			}
-			else return false;
+		if(topFits(p,location) && rightFits(p,location) && bottomFits(p,location) && leftFits(p,location)){
+			return true;
 		}
 		else return false;
 	}
 
-	private Piece getTop(Point p){
-		if(isValid(new Point((int) p.y-1,(int) p.x))){
-			System.out.println("A piece was found there");
+	public Piece getTop(Point p){
+		if(isValid(new Point((int) p.x,(int) p.y-1))){
+//			System.out.println("the spot above is valid");
 			return board[(int) p.y-1][(int) p.x];
 		}
 		else return null;
 	}
 	public boolean topFits(Piece p, Point location){
 		if(getTop(location)== null){
-			System.out.println("SOMETHING WEIRD IS GOING ON");
+//			System.out.println("nothing is above it");
 			return true;
 		}
 		else if(p.getTop()+getTop(location).getBottom()==0){
-			System.out.println(p.getTop() + "\n" + getTop(location).getBottom());
+//			System.out.println(p.getTop() + "\n" + getTop(location).getBottom());
 			return true;
 		}
 		else return false;
 	}	
 	private boolean rightFits(Piece p, Point location){
 		if(getTop(location)== null){
+//			System.out.println("nothing is to the right of it");
 			return true;
 		}
 		else if(p.getRight()+getRight(location).getLeft()==0){
@@ -70,19 +62,19 @@ public class Board{
 		else return false;
 	}
 	private Piece getRight(Point p){
-		if(isValid(new Point((int) p.y,(int) p.x+1))){
+		if(isValid(new Point((int) p.x+1,(int) p.y))){
 			return board[(int) p.y][(int) p.x+1];
 		}
 		else return null;
 	}
 	private Piece getBottom(Point p){
-		if(isValid(new Point((int) p.y+1,(int) p.x))){
+		if(isValid(new Point((int) p.x,(int) p.y+1))){
 			return board[(int) p.y+1][(int) p.x];
 		}
 		else return null;
 	}
 	private Piece getLeft(Point p){
-		if(isValid(new Point((int) p.y,(int) p.x-1))){
+		if(isValid(new Point((int) p.x-1,(int) p.y))){
 			return board[(int) p.y][(int) p.x-1];
 		}
 		else return null;
@@ -96,8 +88,8 @@ public class Board{
 	}
 
 	public boolean isValid(Point p){
-		if(p.getX()<0||p.getY()<0||p.getX()>=xDim||p.getY()>=yDim){
-			System.out.println("A NON-VALID SPOT WAS FOUND AT" + p);
+		if(p.getX()<0||p.getY()<0||p.x>=xDim||p.y>=yDim){
+//			System.out.println("A NON-VALID SPOT WAS FOUND AT" + p);
 			return false;
 		}
 		else return true;
@@ -154,7 +146,7 @@ public class Board{
 	public Board(int xDim, int yDim){
 		this.xDim=xDim;
 		this.yDim=yDim;
-		board = new Piece[xDim][yDim];
+		board = new Piece[yDim][xDim];
 	}
 
 	public static final Piece[] PIECES = {  new Piece(Piece.CLUB_OUT, Piece.DIAMOND_IN, Piece.CLUB_IN, Piece.HEART_OUT),
