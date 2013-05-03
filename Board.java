@@ -16,26 +16,23 @@ public class Board{
 	}
 
 	public Piece getTop(Point p){
-		if(isValid(new Point((int) p.x,(int) p.y-1))){
-//			System.out.println("the spot above is valid");
-			return board[(int) p.y-1][(int) p.x];
+		Point test = new Point((int) p.x, (int) p.y-1);
+		if(isValid(test)){
+			return board[(int) test.y][(int)test.x];
 		}
 		else return null;
 	}
 	public boolean topFits(Piece p, Point location){
 		if(getTop(location)== null){
-//			System.out.println("nothing is above it");
 			return true;
 		}
 		else if(p.getTop()+getTop(location).getBottom()==0){
-//			System.out.println(p.getTop() + "\n" + getTop(location).getBottom());
 			return true;
 		}
 		else return false;
 	}	
 	private boolean rightFits(Piece p, Point location){
 		if(getTop(location)== null){
-//			System.out.println("nothing is to the right of it");
 			return true;
 		}
 		else if(p.getRight()+getRight(location).getLeft()==0){
@@ -127,11 +124,11 @@ public class Board{
 		String s = "";
 		for(int i=0;i<xDim;i++){
 			for(int j=0;j<yDim;j++){
-				if(getPiece(new Point(i,j))==null){
+				if(getPiece(new Point(j,i))==null){
 					s+="[      ]";
 				}
 				else{
-					s+=getPiece(new Point(i,j)).toString();
+					s+=getPiece(new Point(j,i)).toString();
 				}
 			}
 			s+="\n";
