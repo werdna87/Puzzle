@@ -18,7 +18,7 @@ public class Solver{
 		if(p.y>b.getRows()){
 			return;
 		}
-		Boolean bool;
+		Boolean bool = false;
 		Piece piece = used.get(i);
 		for(int j=0;j<4;j++){
 			if(b.doesFit(piece,p)){
@@ -30,7 +30,7 @@ public class Solver{
 			piece.cRotate();
 		}
 		if(bool=true){
-			if(p.getX()> b.getCols()-1){
+			if(p.getX()< b.getCols()-1){
 				solve(b,new Point(p.x+1,p.y),i+1);
 			}
 			else{

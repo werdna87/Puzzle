@@ -32,7 +32,7 @@ public class Board{
 		else return false;
 	}	
 	private boolean rightFits(Piece p, Point location){
-		if(getTop(location)== null){
+		if(getRight(location)== null){
 			return true;
 		}
 		else if(p.getRight()+getRight(location).getLeft()==0){
@@ -41,7 +41,7 @@ public class Board{
 		else return false;
 	}
 	private boolean leftFits(Piece p, Point location){
-		if(getTop(location)== null){
+		if(getLeft(location)== null){
 			return true;
 		}
 		else if(p.getLeft()+getLeft(location).getRight()==0){
@@ -50,7 +50,7 @@ public class Board{
 		else return false;
 	}
 	private boolean bottomFits(Piece p, Point location){
-		if(getTop(location)== null){
+		if(getBottom(location)== null){
 			return true;
 		}
 		else if(p.getBottom()+getBottom(location).getTop()==0){
